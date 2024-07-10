@@ -6,18 +6,33 @@ const $productListDc = document.querySelector("#productListDc");
 const $sumOfProductNumber = document.querySelector("#sumOfProductNumber");
 const $sumOfProductPrice = document.querySelector("#sumOfProductPrice");
 
+
 let count = 0;
 let sumOfProductPrice = 0;
 
 form.addEventListener("submit", (e) => {
     function addProductToList(productList) {
-        const listItem = document.createElement("li");
-        listItem.textContent = `${productList.name} - ${productList.amount} - ${productList.price}`;
-        $productListDc.appendChild(listItem);
-        count += 1;
-        $sumOfProductNumber.textContent = count
-        sumOfProductPrice += Number(productList.amount) * Number(productList.price)
-        $sumOfProductPrice.textContent = sumOfProductPrice
+    const listItem = document.createElement("li");  
+    $productListDc.appendChild(listItem);
+
+    const nameParagraph = document.createElement("p");
+    nameParagraph.textContent = productList.name;
+    listItem.appendChild(nameParagraph);
+
+    const amountParagraph = document.createElement("p");
+    amountParagraph.textContent = productList.amount;
+    listItem.appendChild(amountParagraph);
+
+    const priceParagraph = document.createElement("p");
+    priceParagraph.textContent = productList.price;
+    listItem.appendChild(priceParagraph);
+
+    count += 1;
+    $sumOfProductNumber.textContent = `Mahsulotlar soni: ${count}`;
+
+    sumOfProductPrice += Number(productList.amount) * Number(productList.price);
+    $sumOfProductPrice.textContent = `Jami: ${sumOfProductPrice} so'm`;
+
     }
     const name = $nameInput.value.trim();
     const amount = $amountInput.value.trim();
